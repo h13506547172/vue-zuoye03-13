@@ -8,10 +8,43 @@
   </head>
   <body>
     <script type="text/javascript">
+      const obj1 = {
+        name: ['a', 'b', 'c'],
+        oo: {
+          kk: 'uu',
+          yy: 'pp',
+        },
+      };
       const _completeDeepClone = (target, map = new Map()) => {
         // 补全代码
-        
+        function dp(target) {
+          //先判断对象有没有被map处理过
+          const existObj = map.get(target);
+          if (existObj) {
+            return existObj;
+          }
+          //判断是对象还是数组
+          let result = Array.isArray(target) ? [] : {};
+          map.set(target, result);
+          for (const key in target) {
+            let item = target[key];
+            if (typeof item === 'object') {
+              result[key] = dp(item);
+            } else {
+              result[key] = item;
+            }
+          }
+          return result;
+        }
+        console.log(map);
+        return dp(target);
       };
+      _completeDeepClone(obj1)
+
+
+
+
+
     </script>
   </body>
 </html>
