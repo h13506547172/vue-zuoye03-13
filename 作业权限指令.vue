@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      //0-3可显示
+      //4-5可显示
       arr: [
         { show: 0 },
         { show: 1 },
