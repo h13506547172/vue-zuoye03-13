@@ -5,7 +5,11 @@ import MyNews from '@/views/MyNews';
 import MySports from '@/views/MySport';
 import guowai from "@/views/erji/guowai";
 import guonei from "@/views/erji/guonei";
-
+//编程式导航重复点击报错解决
+let routerPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch((err) => err);
+};
 
 Vue.use(VueRouter);
 
